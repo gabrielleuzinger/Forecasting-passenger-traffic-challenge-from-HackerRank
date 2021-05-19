@@ -1,4 +1,4 @@
-This repository contains the **'Forecasting passenger traffic challenge from HackerRank**. It's objective was the creation of a model to predict the passenger traffic for the following months. This project was set up following the premises of [Reproducible Research] (https://pt.coursera.org/learn/reproducible-research), so that anyone can achieve the same results as me using the steps I followed in Jupyter Notebook.
+This repository contains the **'Forecasting passenger traffic challenge from HackerRank**. It's objective was the creation of a model to predict the passenger traffic for the following months. This project was set up following the premises of [Reproducible Research](https://pt.coursera.org/learn/reproducible-research), so that anyone can achieve the same results as me using the steps I followed in Jupyter Notebook.
 
 # Project libraries
 
