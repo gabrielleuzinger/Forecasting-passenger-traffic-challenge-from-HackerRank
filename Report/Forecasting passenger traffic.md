@@ -609,16 +609,18 @@ fig_lag = plt.figure(figsize=(16, 8))
 #ax[0].axhline(y=0, color='k')
 fig_lag.suptitle('Lag plot')
 plt.subplot(121)
-pd.plotting.lag_plot(df_date['passenger_count'], lag= 1)
+pd.plotting.lag_plot(df_date['passenger_count'], lag= 1, **trendline='lowess')
 plt.subplot(122)
 pd.plotting.lag_plot(df_date['passenger_count'], lag= 12)
 plt.show()
 ```
 
 
-    
-![png](output_16_0.png)
-    
+      File "<ipython-input-86-43f0bc32c957>", line 8
+        pd.plotting.lag_plot(df_date['passenger_count'], lag= 1, **trendline='lowess')
+                                                                            ^
+    SyntaxError: invalid syntax
+
 
 
 
@@ -671,9 +673,9 @@ The next model we test is a moving average (MA) model. It "uses past forecast er
 
 Finally, we can try some models the combines AR and MA. We use an ARMA model first, and then test an ARIMA model. The difference between the two is that while the ARMA model only combines autoregression and moving average models, the ARIMA model also uses differencing (HYNDMAN; ATHANASOPOULOS, 2018). We create an ARMA model by using an ARIMA model and setting the order of the differencing to zero, in an analagous way we created the MA model. 
 
-We use two criteria to evaluate the models, the AICc and the MASE. Both cirteria give suggests different orders for the ARMA model: (8,10) and (10,10). Testing both models with the test set, we verify that the ARMA(10,10) performs better for all other types of erros, MAE, RMSE, and MAPE. Therefore the best ARMA model for our data have order of the autoregressive part of 10 and order of the moving average part of 10. **This model have a MASE of 0.833, performing better than the other models and is the first one to performe better htan the naive method**.
+We use two criteria to evaluate the models, the AICc and the MASE. Both cirteria give suggests different orders for the ARMA model: (8,10) and (10,10). Testing both models with the test set, we verify that the ARMA(10,10) performs better for all other types of erros, MAE, RMSE, and MAPE. Therefore the best ARMA model for our data have order of the autoregressive part of 10 and order of the moving average part of 10. **This model have a MASE of 0.833, performing better than the other models and is the first one to perform better htan the naive method**.
 
-Regarding the ARIMA model, once our time series is stationary, we should use d=0. Increasing d, would only make the model perfom worse. Nonetheless, we make a few tests to check this. The best ARIMA model have order of the autoregressive part of 10, order of the moving average part of 10, and order of the differencing part 0 as expected.
+Regarding the ARIMA model, once our time series is stationary, we should use d=0. Increasing d, would only make the model perfom worse. Nonetheless, we make a few tests to check this. The best ARIMA model have order of the autoregressive part of 10, order of the moving average part of 10, and order of the differencing part 0 as expected. Therefore, the best ARIMA model, ARIMA(8,0,10), is a the same as the best ARMA model, ARMA(8,10).
 
 
 
@@ -1486,7 +1488,7 @@ warnings.filterwarnings("ignore")
 
 ## 4. Conclusion
 
-In this notebook, we were abale to analyze and forecast a time series. After preparing the data, we did an intial exploratory analysis to verify if there were any seasonal or ciclic pattern in the time series. Then, started constructing our forecast model.Fisrt, we split the data in training and testing data sets and used a simple average forecast. This method did not performed well, so we tested ARIMA models. To use this type of model, we needed to confirm that the data was really stationary as the exploratory analysis suggested. We did this by using the ADH and KPSS tests. After we tested several ARIMA models:
+In this notebook, we were able to analyze and forecast a time series. After preparing the data, we did an intial exploratory analysis to verify if there were any seasonal or ciclic pattern in the time series. Then, started constructing our forecast model. Fisrt, we split the data in training and testing data sets and used a simple average forecast. This method did not performed well, so we tested ARIMA models. To use this type of model, we needed to confirm that the data was really stationary as the exploratory analysis suggested. We did this by using the ADH and KPSS tests. After we tested several ARIMA models:
 
 1. Autoregressive model (AR)
 2. Moving average model (MA)
